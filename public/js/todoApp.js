@@ -5,10 +5,10 @@
 var model = {
     user: '동욱',
     items: [
-        { action: '출근하기', done:'N' },
-        { action: '스터디 예습', done:'Y' },
-        { action: '도서 구매', done:'N' },
-        { action: '데이트', done:'Y' }
+        { action: '출근하기', done: false },
+        { action: '스터디 예습', done: true },
+        { action: '도서 구매', done: false },
+        { action: '데이트', done: true }
     ]
 };
 
