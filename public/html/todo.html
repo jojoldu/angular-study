@@ -29,23 +29,8 @@
             <tbody>
                 <tr ng-repeat="item in todo.items">
                     <td>{{item.action}}</td>
+                    <td><input type="checkbox" ng-model="item.done"/></td>
                     <td>{{item.done}}</td>
-                </tr>
-                <tr>
-                    <td>청소</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td>옷 쇼핑</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td>영화관람</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td>스터디 참석</td>
-                    <td>Y</td>
                 </tr>
             </tbody>
         </table>
