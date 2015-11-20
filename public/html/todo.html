@@ -10,7 +10,12 @@
 </head>
 <body ng-app="todoApp" ng-controller="TodoController">
     <div class="page-header">
-        <h1>{{todo.user}}의 ToDo List</h1>
+        <h1>
+            {{todo.user}}의 ToDo List
+            <span class="label label-default">
+                {{incompleteCount()}}
+            </span>
+        </h1>
     </div>
     <div class="panel">
         <div class="input-group">
