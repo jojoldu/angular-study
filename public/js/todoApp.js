@@ -1,5 +1,5 @@
 /**
- * Created by user on 2015-11-21.
+ * Created by jojoldu@gmail.com on 2015-11-21.
  */
 //해당 부분(model)은 서버에서 보내준 데이터라고 가정함
 var model = {
@@ -26,7 +26,11 @@ todoApp.controller("TodoController", function($scope){
         return count;
     }
 
-    $socpe.warning = function(){
+    $scope.warning = function(){
         return $scope.incompleteCount() < 3? 'label-success' : 'label-warning';
+    }
+
+    $scope.addNewItem = function(action){
+        $scope.todo.items.push({action:action, done:false});
     }
 });
