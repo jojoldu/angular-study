@@ -12,7 +12,7 @@
     <div class="page-header">
         <h1>
             {{todo.user}}의 ToDo List
-            <span class="label label-default">
+            <span class="label label-default" ng-class="warning()">
                 {{incompleteCount()}}
             </span>
         </h1>

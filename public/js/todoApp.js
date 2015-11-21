@@ -25,4 +25,8 @@ todoApp.controller("TodoController", function($scope){
         });
         return count;
     }
+
+    $socpe.warning = function(){
+        return $scope.incompleteCount() < 3? 'label-success' : 'label-warning';
+    }
 });
