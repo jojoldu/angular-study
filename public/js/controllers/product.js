@@ -2,7 +2,7 @@
  * Created by user on 2015-11-22.
  */
 
-angular.module('product',[])
+angular.module('product',['customFilter'])
 .controller('productCtrl', function($scope){
    $scope.data={
        products : [
@@ -16,4 +16,5 @@ angular.module('product',[])
        {category : 'BasketBall', description:'조던 6', name:'농구화', price:'180000', id:8},
        {category : 'BasketBall', description:'겨울용', name:'이너웨어', price:'46000', id:9}
    ]};
+
 });
