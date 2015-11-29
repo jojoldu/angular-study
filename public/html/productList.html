@@ -12,6 +12,7 @@
                 <strong>{{item.name}}</strong>
                 <span class="pull-right label label-primary">{{item.price | number:0}} 원</span>
             </h3>
+            <button ng-click="addCart(item)" class="btn btn-success pull-right">장바구니 담기</button>
             <span class="lead">{{item.description}}</span>
         </div>
         <div class="pull-right btn-group">
