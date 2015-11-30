@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" ng-app="app">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,7 +8,7 @@
     <link href="../components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
     <link href="../components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
 </head>
-<body ng-controller="MainController">
+<body ng-app="app" ng-controller="MainController">
     <span>Insert your name: </span>
     <input type="text" ng-model="user.name"/>
     <h3>Show: {{user.name}}</h3>
