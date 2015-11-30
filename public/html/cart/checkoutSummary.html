@@ -2,6 +2,25 @@
 
 <div ng-controller="cartSummaryController">
     <div class="alert alert-warning" ng-show="cartData.length == 0">
-        
+        장바구니에 아무것도 없습니다.
+        <a href="/products" class="alert-link"> Back </a>
+    </div>
+
+    <div ng-hide="cartData.length == 0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>수량</th>
+                    <th>상품</th>
+                    <th class="text-right">가격</th>
+                    <th class="text-right">총합</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in cartData">
+
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
