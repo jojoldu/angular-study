@@ -1,4 +1,7 @@
-<div class="lead">
-    장바구니
+<h2> Your cart </h2>
+
+<div ng-controller="cartSummaryController">
+    <div class="alert alert-warning" ng-show="cartData.length == 0">
+        
+    </div>
 </div>
-<a href="#/checkout" class="btn btn-primary">Back</a>
