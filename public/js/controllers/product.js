@@ -16,5 +16,4 @@ angular.module('product',['customFilter'])
        {category : 'BasketBall', description:'조던 6', name:'농구화', price:'180000', id:8},
        {category : 'BasketBall', description:'겨울용', name:'이너웨어', price:'46000', id:9}
    ]};
-
 });
