@@ -18,6 +18,7 @@
     <br>
     <h1> 장바구니 </h1>
     <div ng-repeat="item in items">
+        <span>{{$index}}</span>
         <span>{{item.title}}</span>
         <span> 수량:{{item.count}}</span>
         <span> 가격:{{item.price}}</span>
