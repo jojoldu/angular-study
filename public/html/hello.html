@@ -20,9 +20,11 @@
     <div ng-repeat="item in items">
         <span>{{$index}}</span>
         <span>{{item.title}}</span>
-        <span> 수량:{{item.count}}</span>
+        <span> 수량:</span>
+        <input type="text" ng-model="item.count">
         <span> 가격:{{item.price}}</span>
         <span> 총합:{{item.count * item.price}}원</span>
+        <button ng-click="remove($index)">삭제</button>
     </div>
 </body>
 </html>

@@ -29,4 +29,8 @@ angular.module('hello', [])
                 price : 400
             }
         ];
+
+        $scope.remove = function(index){
+            $scope.items.splice(index, 1);
+        }
     });
