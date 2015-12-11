@@ -14,5 +14,14 @@
     <strong>{{hello.msg}}</strong>
     <br>
     <button ng-click="toUpper()">대문자로 전환!!</button>
+
+    <br>
+    <h1> 장바구니 </h1>
+    <div ng-repeat="item in items">
+        <span>{{item.title}}</span>
+        <span> 수량:{{item.count}}</span>
+        <span> 가격:{{item.price}}</span>
+        <span> 총합:{{item.count * item.price}}원</span>
+    </div>
 </body>
 </html>
