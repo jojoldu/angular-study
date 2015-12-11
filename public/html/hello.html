@@ -9,6 +9,10 @@
     <link href="../components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
 </head>
 <body ng-app="hello" ng-controller="HelloController">
+    <input type="text" ng-model="hello.msg">
+    <br>
     <strong>{{hello.msg}}</strong>
+    <br>
+    <button ng-click="toUpper()">대문자로 전환!!</button>
 </body>
 </html>

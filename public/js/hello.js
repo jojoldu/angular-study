@@ -3,8 +3,12 @@
  */
 
 angular.module('hello', [])
-    .controller('HelloController', function($scope){
+    .controller('HelloController', function($scope, $filter){
         $scope.hello = {
-            msg : '안녕하세요.'
+            msg : 'hello.'
+        }
+
+        $scope.toUpper = function(){
+            $scope.hello.msg = $filter('uppercase')($scope.hello.msg);
         }
     });
