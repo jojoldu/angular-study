@@ -17,6 +17,14 @@
 
     <br>
     <h1> 장바구니 </h1>
+    <div>
+        <h3>직접추가</h3>
+        <span>이름:</span><input type="text" ng-model="title">
+        <span>수량:</span><input type="text" ng-model="count">
+        <span>가격:</span><input type="text" ng-model="price">
+        <button ng-click="add()">추가</button>
+    </div>
+    <br>
     <div ng-repeat="item in items">
         <span>{{$index}}</span>
         <span>{{item.title}}</span>
@@ -25,6 +33,14 @@
         <span> 가격:{{item.price}}</span>
         <span> 총합:{{item.count * item.price}}원</span>
         <button ng-click="remove($index)">삭제</button>
+    </div>
+    <br>
+    <div>
+        <span>전체 금액 : {{total()}} 원</span>
+        <br>
+        <span>할인 금액 : {{bill.discountPrice}} 원</span>
+        <br>
+        <span>결제 금액 : {{bill.payPrice}} 원</span>
     </div>
 </body>
 </html>
