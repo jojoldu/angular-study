@@ -30,7 +30,42 @@ angular.module('hello', [])
             }
         ];
 
+
         $scope.remove = function(index){
             $scope.items.splice(index, 1);
+        }
+
+        $scope.add = function(){
+            var item = {
+                title : $scope.title,
+                count : $scope.count,
+                price : $scope.price
+            }
+            $scope.items.push(item);
+            $scope.refresh();
+        }
+
+        $scope.refresh = function(){
+            $scope.title = '';
+            $scope.count = 0;
+            $scope.price = 0;
+        }
+
+        $scope.bill = {
+            totalPrice : 0,
+            discountPrice : 0,
+            payPrice : 0
+        };
+
+        $scope.total = function(){
+            var totalPrice = 0;
+            angular.forEach($scope.items, function(item){
+                totalPrice += item.count * item.price;
+            });
+            $scope.bill.totalPrice = totalPrice;
+            $scope.bill.discountPrice = (totalPrice > 20000)? totalPrice/10 : 0;
+            $scope.bill.payPrice = totalPrice - $scope.bill.discountPrice;
+
+            return totalPrice;
         }
     });
