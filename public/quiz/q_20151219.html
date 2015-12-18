@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 바로 아래 js부분은 외부사이트라 가정하고, 코드를 보지 않습니다.-->
+    <script src="q_20151219.js"></script>
+</head>
+<body>
+    <div id="list"></div>
+    <!-- 본인이 작성한 코드부분이라 생각하고, 아래 코드만으로 해답을 찾아보세요.
+    1) 홍길동 장금이만 화면에 출력되려면 어떻게 고쳐야 하나요?
+    2) 왜 홍길동, 장금이만 출력되지 않나요?
+    -->
+    <script type="text/javascript">
+        var _list = document.getElementById('list');
+        var str = '';
+        var members = ['홍길동', '장금이'];
+
+        for(member in members){
+            str += '<span>'+member+'</span><br>';
+        }
+        _list.innerHTML = str;
+    </script>
+</body>
+</html>
