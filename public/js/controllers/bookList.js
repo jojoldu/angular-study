@@ -2,12 +2,21 @@
  * Created by jojoldu@gmail.com on 2015-12-06.
  */
 angular.module('book')
-    .constant('productListActiveClass', 'btn-success')
-    .controller('bookListCtrl', function($scope, $filter, productListActiveClass){
+    .constant('bookListActiveClass', 'btn-success')
+    .constant('bookListPageCount', 2)
+    .controller('bookListCtrl', function($scope, $filter, bookListActiveClass, bookListPageCount){
         var selectedGrade = 0;
+
+        $scope.selectedPage = 1;
+        $scope.pageSize = bookListPageCount;
 
         $scope.selectGrade = function(grade){
             selectedGrade = grade;
+            $scope.selectedPage = 1;
+        };
+
+        $scope.selectPage = function(newPage){
+            $scope.selectedPage = newPage;
         };
 
         $scope.gradeFilterFn = function(book){
@@ -15,6 +24,10 @@ angular.module('book')
         };
 
         $scope.getGradeClass = function(grade){
-            return selectedGrade == grade? productListActiveClass : '';
+            return selectedGrade == grade? bookListActiveClass : '';
         };
+
+        $scope.getPageClass = function(page){
+            return $scope.selectedPage == page? bookListActiveClass : '';
+        }
     });
