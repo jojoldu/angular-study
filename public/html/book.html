@@ -25,7 +25,7 @@
         </a>
     </div>
     <div class="col-xs-8">
-        <div class="well" ng-repeat="item in data.books | orderBy:'grade':true | filter:gradeFilterFn | range:selectedPage:pageSize">
+        <div class="well" ng-click="show(item)" ng-repeat="item in data.books | orderBy:'grade':true | filter:gradeFilterFn | range:selectedPage:pageSize">
             <h3>
                 <strong>{{item.name}}</strong>
                 <span class="pull-right label label-primary">{{item.price | number:0}} 원</span>

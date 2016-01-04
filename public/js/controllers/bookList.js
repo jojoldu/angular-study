@@ -29,5 +29,17 @@ angular.module('book')
 
         $scope.getPageClass = function(page){
             return $scope.selectedPage == page? bookListActiveClass : '';
+        };
+
+        $scope.show = function(book){
+            var msg = '';
+
+            for(prop in book){
+                if(prop != '$$hashKey'){
+                    msg += prop + ' : ' + book[prop] + '\n';
+                }
+            }
+
+            alert(msg);
         }
     });
