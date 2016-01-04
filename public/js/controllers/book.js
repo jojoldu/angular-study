@@ -4,6 +4,7 @@
 
 angular.module('book',['customFilter'])
     .controller('bookCtrl', function($scope){
+
         $scope.data={
             books : [
                 {category : 'novel', grade: 4.7, name:'용의자x의 헌신', price:'27000', id:1},
@@ -25,5 +26,7 @@ angular.module('book',['customFilter'])
                 }
             }
             return result;
-        }
+        };
+
+
     });

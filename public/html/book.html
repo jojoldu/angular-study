@@ -17,9 +17,10 @@
 </div>
 <div class="panel panel-default row" ng-controller="bookListCtrl">
     <div class="col-xs-3">
-        <a ng-click="selectGrade()" class="btn btn-block btn-default btn-lg">Home</a>
+        <a ng-click="selectGrade(0)" class="btn btn-block btn-default btn-lg" ng-class="getGradeClass(0)">Home</a>
         <a ng-repeat="item in data.books | orderBy:'grade':true | grade" ng-click="selectGrade(item)"
-           class="btn btn-block btn-default btn-lg">
+           class="btn btn-block btn-default btn-lg"
+           ng-class="getGradeClass(item)">
             <strong>{{gradeToStar(item)}}</strong>
         </a>
     </div>
