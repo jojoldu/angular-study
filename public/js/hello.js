@@ -41,11 +41,14 @@ angular.module('hello', [])
                 });
         };
 
-        $scope.pushData = function(){
-          $http.post('/hello/data', $scope.product)
+        //Ajax post 추가 코드
+        $scope.pushData = function(product){
+          $http.post('/hello/data', product)
               .success(function(data){
                   if(data){
                       alert('데이터가 추가되었습니다.');
+                      $scope.products.push( product);
+                      $scope.product = {};
                   }else{
                       alert('데이터가 추가되지 못했습니다.');
                   }
