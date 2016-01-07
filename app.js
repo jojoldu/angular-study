@@ -29,11 +29,18 @@ app.get('/hello/data', function(req, res){
     res.json(items);
 });
 
-app.post('/hello/data', function(req, res){
+app.post('/hello/data', function(req, res, next){
     var body = req.body;
-    console.log('req body : ' + body);
-    items.push(body);
-    res.json(true);
+    console.log('req body : ' +JSON.stringify(body));
+    if( !body.title ||
+        !body.count ||
+        !body.price){
+
+        next(new Error('빈값이 있다!'));
+    }else{
+        items.push(body);
+        res.json(true);
+    }
 });
 
 app.get('/todo', function(req, res){

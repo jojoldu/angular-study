@@ -53,6 +53,9 @@ angular.module('hello', [])
                       alert('데이터가 추가되지 못했습니다.');
                   }
               })
+              .error(function(data, status, statusText){
+                   alert(data+' ' +status +' ' + statusText);
+              });
         };
 
     });
