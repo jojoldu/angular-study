@@ -3,14 +3,14 @@
  */
 
 angular.module('hello', [])
-    .controller('HelloController', function($scope, $filter){
+    .controller('HelloController', function($scope, $filter, $http){
         $scope.hello = {
             msg : 'hello.'
-        }
+        };
 
         $scope.toUpper = function(){
             $scope.hello.msg = $filter('uppercase')($scope.hello.msg);
-        }
+        };
 
         $scope.items = [
             {
@@ -33,4 +33,12 @@ angular.module('hello', [])
         $scope.remove = function(index){
             $scope.items.splice(index, 1);
         }
+
+        $scope.loadData = function(){
+            $http.get('/hello/data')
+                .success(function(data){
+                    $scope.products = data;
+                });
+        }
+
     });

@@ -16,6 +16,16 @@ app.get('/hello', function(req, res){
     res.sendFile(path.join(__dirname + '/public/html/hello.html'));
 });
 
+app.get('/hello/data', function(req, res){
+    var items = [
+        { title: '볼펜', count: 4, price: 1800 },
+        { title: '지우개', count: 1, price: 800 },
+        { title: '연필', count: 12, price: 400 },
+        { title:'필통', count:3, price:2800 }
+    ];
+    res.json(items);
+});
+
 app.get('/todo', function(req, res){
     res.sendFile(path.join(__dirname + '/public/html/todo.html'));
 });
