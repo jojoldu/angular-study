@@ -32,13 +32,24 @@ angular.module('hello', [])
 
         $scope.remove = function(index){
             $scope.items.splice(index, 1);
-        }
+        };
 
         $scope.loadData = function(){
             $http.get('/hello/data')
                 .success(function(data){
                     $scope.products = data;
                 });
-        }
+        };
+
+        $scope.pushData = function(){
+          $http.post('/hello/data', $scope.product)
+              .success(function(data){
+                  if(data){
+                      alert('데이터가 추가되었습니다.');
+                  }else{
+                      alert('데이터가 추가되지 못했습니다.');
+                  }
+              })
+        };
 
     });
