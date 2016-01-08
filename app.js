@@ -31,7 +31,7 @@ app.get('/hello/data', function(req, res){
 
 app.post('/hello/data', function(req, res){
     var body = req.body;
-    console.log('req body : ' + body);
+    console.log('req body : ' + JSON.stringify(body));
     items.push(body);
     res.json(true);
 });
