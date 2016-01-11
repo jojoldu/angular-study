@@ -17,19 +17,27 @@
 </div>
 <div class="panel panel-default row" ng-controller="bookListCtrl">
     <div class="col-xs-3">
-        <a ng-click="selectGrade()" class="btn btn-block btn-default btn-lg">Home</a>
+        <a ng-click="selectGrade(0)" class="btn btn-block btn-default btn-lg" ng-class="getGradeClass(0)">Home</a>
         <a ng-repeat="item in data.books | orderBy:'grade':true | grade" ng-click="selectGrade(item)"
-           class="btn btn-block btn-default btn-lg">
+           class="btn btn-block btn-default btn-lg"
+           ng-class="getGradeClass(item)">
             <strong>{{gradeToStar(item)}}</strong>
         </a>
     </div>
     <div class="col-xs-8">
-        <div class="well" ng-repeat="item in data.books | orderBy:'grade':true | filter:gradeFilterFn">
+        <div class="well" ng-click="show(item)" ng-repeat="item in data.books | orderBy:'grade':true | filter:gradeFilterFn | range:selectedPage:pageSize">
             <h3>
                 <strong>{{item.name}}</strong>
                 <span class="pull-right label label-primary">{{item.price | number:0}} 원</span>
             </h3>
             <span class="lead">평점 : {{item.grade}}</span>
+        </div>
+        <div class="pull-right btn-group">
+            <a ng-repeat = "page in data.books | filter:gradeFilterFn | pageCount : pageSize"
+               ng-click="selectPage($index+1)" class="btn btn-default"
+               ng-class="getPageClass($index+1)">
+                {{$index+1}}
+            </a>
         </div>
     </div>
 </div>
