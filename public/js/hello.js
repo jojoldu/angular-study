@@ -58,4 +58,26 @@ angular.module('hello', [])
               });
         };
 
+        //Ajax promise then 추가 코드
+        $scope.pushData2 = function(product){
+            $http.post('/hello/data', product)
+                .then(function(data){// 1.success function
+                    if(data){
+                        alert('데이터가 추가되었습니다.');
+                        $scope.products.push( product);
+                        $scope.product = {};
+                    }else{
+                        alert('데이터가 추가되지 못했습니다.');
+                    }
+                }, function(response){ // 2.error function
+                    if(response.status === 500){
+                        alert('서버에서 오류가 발생하였습니다..\n잠시후 시도해주세요.'); //혹은 다른 페이지로 이동
+                    }else if(response.status === 404){
+                        alert('Ajax 호출 url이 잘못되었습니다.');
+                    }else{
+                        alert('알수없는 오류 발생\n'+response.data);
+                    }
+                });
+        };
+
     });
