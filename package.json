@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/jojoldu/angular-study",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "express": "~4.13.3",
     "path": "~0.12.7"
   }
