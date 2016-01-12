@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="history in histories">
+            <tr ng-repeat="history in histories | orderBy:'date':true">
                 <td>{{$index}}</td>
                 <td>{{history.date}}</td>
                 <td>{{history.description}}</td>
