@@ -61,8 +61,8 @@ angular.module('hello', [])
         //Ajax promise then 추가 코드
         $scope.pushData2 = function(product){
             $http.post('/hello/data', product)
-                .then(function(data){// 1.success function
-                    if(data){
+                .then(function(response){// 1.success function
+                    if(response.data){
                         alert('데이터가 추가되었습니다.');
                         $scope.products.push( product);
                         $scope.product = {};
@@ -78,6 +78,11 @@ angular.module('hello', [])
                         alert('알수없는 오류 발생\n'+response.data);
                     }
                 });
+        };
+
+        //Ajax config 방식 추가 코드
+        $scope.pushData3 = function(product){
+            $http.post()
         };
 
     });
