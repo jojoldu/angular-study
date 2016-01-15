@@ -3,7 +3,7 @@
  */
 
 angular.module('hello', [])
-    .controller('HelloController', function($scope, $filter, $http){
+    .controller('HelloController', function($scope, $filter, $http, $q){
         $scope.hello = {
             msg : 'hello.'
         };
@@ -79,5 +79,22 @@ angular.module('hello', [])
                     }
                 });
         };
+
+        var defer = $q.defer();
+        defer.promise
+            .then(function(cook){
+                alert('오늘의 요리는 ' + cook);
+                return '제육볶음';
+            })
+            .then(function(cook){
+                alert('와 ' + cook);
+                return '멸치볶음';
+            })
+            .then(function(cook){
+                alert('과 '+cook);
+                return '콩나물 무침';
+            });
+        alert('뭐먹지?');
+        defer.resolve('김치찌개');
 
     });
