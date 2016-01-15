@@ -43,19 +43,19 @@ angular.module('hello', [])
 
         //Ajax post 추가 코드
         $scope.pushData = function(product){
-          $http.post('/hello/data', product)
-              .success(function(data){
-                  if(data){
-                      alert('데이터가 추가되었습니다.');
-                      $scope.products.push( product);
-                      $scope.product = {};
-                  }else{
-                      alert('데이터가 추가되지 못했습니다.');
-                  }
-              })
-              .error(function(data, status){
-                   alert(data+' ' +status);
-              });
+            $http.post('/hello/data', product)
+                .success(function(data){
+                    if(data){
+                        alert('데이터가 추가되었습니다.');
+                        $scope.products.push( product);
+                        $scope.product = {};
+                    }else{
+                        alert('데이터가 추가되지 못했습니다.');
+                    }
+                })
+                .error(function(data, status){
+                    alert(data+' ' +status);
+                });
         };
 
         //Ajax promise then 추가 코드
@@ -102,9 +102,10 @@ angular.module('hello', [])
         $scope.threeSecond = function(){
             $timeout(function(){
                 alert('헬로우');
-            },3000);
-
-            alert('월드');
+            },3000)
+                .then(function(){
+                    alert('월드') ;
+                });
         };
         $scope.threeSecond();
     });
