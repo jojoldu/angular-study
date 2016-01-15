@@ -3,7 +3,7 @@
  */
 
 angular.module('hello', [])
-    .controller('HelloController', function($scope, $filter, $http){
+    .controller('HelloController', function($scope, $filter, $http, $timeout){
         $scope.hello = {
             msg : 'hello.'
         };
@@ -43,19 +43,19 @@ angular.module('hello', [])
 
         //Ajax post 추가 코드
         $scope.pushData = function(product){
-          $http.post('/hello/data', product)
-              .success(function(data){
-                  if(data){
-                      alert('데이터가 추가되었습니다.');
-                      $scope.products.push( product);
-                      $scope.product = {};
-                  }else{
-                      alert('데이터가 추가되지 못했습니다.');
-                  }
-              })
-              .error(function(data, status){
-                   alert(data+' ' +status);
-              });
+            $http.post('/hello/data', product)
+                .success(function(data){
+                    if(data){
+                        alert('데이터가 추가되었습니다.');
+                        $scope.products.push( product);
+                        $scope.product = {};
+                    }else{
+                        alert('데이터가 추가되지 못했습니다.');
+                    }
+                })
+                .error(function(data, status){
+                    alert(data+' ' +status);
+                });
         };
 
         //Ajax promise then 추가 코드
@@ -80,4 +80,22 @@ angular.module('hello', [])
                 });
         };
 
+        $scope.result=false;
+        $scope.showQuiz = function(){
+            $scope.result=true;
+            var promiseObj = $timeout(function(){
+                return $scope.answer;
+            }, 3000);
+
+            promiseObj.then(function(input){
+                if(input == 39){
+                    $scope.result=true;
+                    $scope.msg="정답!";
+                }else{
+                    $scope.result=false;
+                    $scope.msg="틀렸어요!";
+                }
+                $scope.info = "다시 시작하려면 refresh 해주세요.";
+            });
+        };
     });
