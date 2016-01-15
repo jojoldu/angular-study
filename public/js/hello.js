@@ -3,7 +3,7 @@
  */
 
 angular.module('hello', [])
-    .controller('HelloController', function($scope, $filter, $http){
+    .controller('HelloController', function($scope, $filter, $http, $q){
         $scope.hello = {
             msg : 'hello.'
         };
@@ -84,24 +84,27 @@ angular.module('hello', [])
         $scope.born = function(){
             var name, gender, registNumber;
 
-            $http.get('/name')
+            var promiseName = $http.get('/name')
                 .then(function(response){
                     name = response.data;
                     console.log('name : ' + name);
                 });
-            
-            $http.get('/gender/'+name)
+
+            var promiseGender = $http.get('/gender/'+name)
                 .then(function(response){
                     gender = response.data;
                     console.log('gender : ' + gender);
                 });
 
-            $http.get('/regist/'+gender)
+            var promiseRegist = $http.get('/regist/'+gender)
                 .then(function(response){
                     registNumber= response.data;
                     console.log('registNumber : ' + registNumber);
                 });
 
-            alert(registNumber);
+            $q.all([promiseName, promiseGender, promiseRegist])
+                .then(function(){
+                    alert(registNumber);
+                });
         }
     });
