@@ -71,5 +71,24 @@ app.get('/books', function(req, res){
     res.sendFile(path.join(__dirname + '/public/html/book.html'));
 });
 
+//외부 API라고 가정
+app.get('/name', function(req, res){
+    var dice = Math.random() * 5 +1;
+    res.send(dice>=3? 'hello' : 'world');
+});
+
+app.get('/gender/:name', function(req, res){
+    if(!req.params.name){
+        res.send(false);
+    }
+    res.send(req.params.name === 'hello'? 'male' : 'female');
+});
+
+app.get('/regist/:gender', function(req, res){
+    if(!req.params.gender){
+        res.send(false);
+    }
+    res.send(req.params.gender === 'male'? '13579' : '24680');
+});
 app.listen(8080);
 console.log('Express Listening on port 8080...');

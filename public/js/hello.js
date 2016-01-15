@@ -43,19 +43,19 @@ angular.module('hello', [])
 
         //Ajax post 추가 코드
         $scope.pushData = function(product){
-          $http.post('/hello/data', product)
-              .success(function(data){
-                  if(data){
-                      alert('데이터가 추가되었습니다.');
-                      $scope.products.push( product);
-                      $scope.product = {};
-                  }else{
-                      alert('데이터가 추가되지 못했습니다.');
-                  }
-              })
-              .error(function(data, status){
-                   alert(data+' ' +status);
-              });
+            $http.post('/hello/data', product)
+                .success(function(data){
+                    if(data){
+                        alert('데이터가 추가되었습니다.');
+                        $scope.products.push( product);
+                        $scope.product = {};
+                    }else{
+                        alert('데이터가 추가되지 못했습니다.');
+                    }
+                })
+                .error(function(data, status){
+                    alert(data+' ' +status);
+                });
         };
 
         //Ajax promise then 추가 코드
@@ -80,4 +80,24 @@ angular.module('hello', [])
                 });
         };
 
+        //어떻게하면 순차적으로 실행하여 정상적인 registNumber를 생성할수있을까?
+        $scope.born = function(){
+            var name, gender, registNumber;
+
+            $http.get('/name')
+                .then(function(data){
+                    name = data;
+                });
+            $http.get('/gender/'+name)
+                .then(function(data){
+                    gender = data;
+                });
+
+            $http.get('/regist/'+gender)
+                .then(function(data){
+                    registNumber= data;
+                });
+
+            alert(registNumber);
+        }
     });
