@@ -85,17 +85,21 @@ angular.module('hello', [])
             var name, gender, registNumber;
 
             $http.get('/name')
-                .then(function(data){
-                    name = data;
+                .then(function(response){
+                    name = response.data;
+                    console.log('name : ' + name);
                 });
+            
             $http.get('/gender/'+name)
-                .then(function(data){
-                    gender = data;
+                .then(function(response){
+                    gender = response.data;
+                    console.log('gender : ' + gender);
                 });
 
             $http.get('/regist/'+gender)
-                .then(function(data){
-                    registNumber= data;
+                .then(function(response){
+                    registNumber= response.data;
+                    console.log('registNumber : ' + registNumber);
                 });
 
             alert(registNumber);
