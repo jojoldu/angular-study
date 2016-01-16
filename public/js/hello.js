@@ -126,4 +126,30 @@ angular.module('hello', [])
                 $scope.info = "다시 시작하려면 refresh 해주세요.";
             });
         };
+
+        //어떻게하면 순차적으로 실행하여 정상적인 registNumber를 생성할수있을까?
+        $scope.born = function(){
+            var name, gender, registNumber;
+
+            $http.get('/name')
+                .then(function(response){
+                    name = response.data;
+                    console.log('name : ' + name);
+                });
+            
+            $http.get('/gender/'+name)
+                .then(function(response){
+                    gender = response.data;
+                    console.log('gender : ' + gender);
+                });
+
+            $http.get('/regist/'+gender)
+                .then(function(response){
+                    registNumber= response.data;
+                    console.log('registNumber : ' + registNumber);
+                });
+
+            alert(registNumber);
+        }
+>>>>>>> feature/hello-1-promise-quiz
     });
