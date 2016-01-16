@@ -3,7 +3,7 @@
  */
 
 angular.module('hello', [])
-    .controller('HelloController', function($scope, $filter, $http){
+    .controller('HelloController', function($scope, $filter, $http, $q, $timeout){
         $scope.hello = {
             msg : 'hello.'
         };
@@ -43,19 +43,19 @@ angular.module('hello', [])
 
         //Ajax post 추가 코드
         $scope.pushData = function(product){
-          $http.post('/hello/data', product)
-              .success(function(data){
-                  if(data){
-                      alert('데이터가 추가되었습니다.');
-                      $scope.products.push( product);
-                      $scope.product = {};
-                  }else{
-                      alert('데이터가 추가되지 못했습니다.');
-                  }
-              })
-              .error(function(data, status){
-                   alert(data+' ' +status);
-              });
+            $http.post('/hello/data', product)
+                .success(function(data){
+                    if(data){
+                        alert('데이터가 추가되었습니다.');
+                        $scope.products.push( product);
+                        $scope.product = {};
+                    }else{
+                        alert('데이터가 추가되지 못했습니다.');
+                    }
+                })
+                .error(function(data, status){
+                    alert(data+' ' +status);
+                });
         };
 
         //Ajax promise then 추가 코드
@@ -79,5 +79,79 @@ angular.module('hello', [])
                     }
                 });
         };
+        $scope.showCook = function(){
+            var defer = $q.defer();
+            defer.promise
+                .then(function(cook){
+                    alert('오늘의 요리는 ' + cook);
+                    return '제육볶음';
+                })
+                .then(function(cook){
+                    alert('와 ' + cook);
+                    return '멸치볶음';
+                })
+                .then(function(cook){
+                    alert('과 '+cook);
+                    return '콩나물 무침';
+                });
+            alert('뭐먹지?');
+            defer.resolve('김치찌개');
+        };
 
+        $scope.threeSecond = function(){
+            $timeout(function(){
+                alert('헬로우');
+            },3000)
+                .then(function(){
+                    alert('월드') ;
+                });
+        };
+        $scope.threeSecond();
+
+        $scope.result=false;
+        $scope.showQuiz = function(){
+            $scope.result=true;
+            var promiseObj = $timeout(function(){
+                return $scope.answer;
+            }, 3000);
+
+            promiseObj.then(function(input){
+                if(input == 39){
+                    $scope.result=true;
+                    $scope.msg="정답!";
+                }else{
+                    $scope.result=false;
+                    $scope.msg="틀렸어요!";
+                }
+                $scope.info = "다시 시작하려면 refresh 해주세요.";
+            });
+        };
+
+        //어떻게하면 순차적으로 실행하여 정상적인 registNumber를 생성할수있을까?
+        $scope.born = function(){
+            var name, gender, registNumber;
+
+            var promiseName = $http.get('/name')
+                .then(function(response){
+                    name = response.data;
+                    console.log('name : ' + name);
+                });
+
+            var promiseGender = $http.get('/gender/'+name)
+                .then(function(response){
+                    gender = response.data;
+                    console.log('gender : ' + gender);
+                });
+
+            var promiseRegist = $http.get('/regist/'+gender)
+                .then(function(response){
+                    registNumber= response.data;
+                    console.log('registNumber : ' + registNumber);
+                });
+
+            $q.all([promiseName, promiseGender, promiseRegist])
+                .then(function(){
+                    alert(registNumber);
+                });
+        }
     });
