@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MoneyBook</title>
+    <script src="../components/angular/angular.js"></script>
+    <script src="../js/quiz/moneyBook.js"></script>
+    <link href="../components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
+</head>
+<body ng-app="moneyBook" ng-controller="MoneyBookController">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>No</th> <th>날짜</th> <th>내용</th> <th>금액</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="history in histories | orderBy:'date':true">
+                <td>{{$index}}</td>
+                <td>{{history.date}}</td>
+                <td>{{history.description}}</td>
+                <td>{{history.money}}원</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input placeholder="내용을 작성해주세요...." type="text" class="form-control" ng-model="history.description"></td>
+                <td colspan="2"><input placeholder="금액을 작성해주세요...." type="text" class="form-control" ng-model="history.money"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><span class="pull-right">잔고 : {{totalMoney() | number:0}} 원</span></td>
+            </tr>
+            </tbody>
+        </table>
+        <p>
+            <button class="btn btn-primary" ng-click="get()"> 가계부 불러오기 </button>
+            <button class="btn btn-success" ng-click="write(history)"> 가계부 작성 </button>
+        </p>
+    </div>
+</div>
+</body>
+</html>
