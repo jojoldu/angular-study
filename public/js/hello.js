@@ -79,7 +79,6 @@ angular.module('hello', [])
                     }
                 });
         };
-
         $scope.showCook = function(){
             var defer = $q.defer();
             defer.promise
@@ -108,4 +107,23 @@ angular.module('hello', [])
                 });
         };
         $scope.threeSecond();
+
+        $scope.result=false;
+        $scope.showQuiz = function(){
+            $scope.result=true;
+            var promiseObj = $timeout(function(){
+                return $scope.answer;
+            }, 3000);
+
+            promiseObj.then(function(input){
+                if(input == 39){
+                    $scope.result=true;
+                    $scope.msg="정답!";
+                }else{
+                    $scope.result=false;
+                    $scope.msg="틀렸어요!";
+                }
+                $scope.info = "다시 시작하려면 refresh 해주세요.";
+            });
+        };
     });
