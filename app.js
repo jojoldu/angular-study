@@ -89,7 +89,8 @@ var data ={
         {category : 'BasketBall', description:'2015 서울 StreetBall', name:'대회참가권', price:'20000', id:7},
         {category : 'BasketBall', description:'조던 6', name:'농구화', price:'180000', id:8},
         {category : 'BasketBall', description:'겨울용', name:'이너웨어', price:'46000', id:9}
-    ]};
+    ]
+};
 
 app.get('/product', function(req, res){
     res.send(data.products);

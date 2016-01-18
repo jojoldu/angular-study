@@ -14,4 +14,8 @@ angular.module('product',['customFilter'])
             .error(function(error){
                $scope.data.error = error;
             });
+
+        $scope.totalPrice = function(){
+
+        };
 });
