@@ -96,6 +96,31 @@ app.get('/product', function(req, res){
     res.send(data.products);
 });
 
+var secretKey = 12345;
+app.get('/product/secret', function(req, res){
+    secretKey = Math.floor((Math.random()*99999) + 10000);
+    console.log('current secret key : ' + secretKey);
+    res.json(secretKey);
+});
+
+var limitMoney = 100000;
+app.post('/product/buy', function(req, res){
+    var list = req.body.list,
+        key = req.body.secretKey,
+        sum = 0;
+
+    if(key != secretKey){
+        console.log('request key : ' + key);
+        res.json("secret key가 틀렸습니다.");
+    }else{
+        for(var i=0;i<list;i++){
+            sum += list[i].price;
+        }
+
+        res.json(sum<=limitMoney? '구매 성공' : '금액이 초과하였습니다.');
+    }
+});
+
 app.get('/books', function(req, res){
     res.sendFile(path.join(__dirname + '/public/html/book.html'));
 });

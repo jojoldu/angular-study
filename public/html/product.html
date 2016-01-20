@@ -13,10 +13,6 @@
 <body ng-controller="productCtrl">
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">포인트 상점</a>
-        <div class="pull-right btn-group">
-            <span>{{totalPrice | number:0}} 원</span>
-            <button class="btn btn-default">Buy</button>
-        </div>
     </div>
     <div class="alert alert-danger" ng-show="data.error">
         Error ({{data.error.status}}). 페이지를 불러올 수 없습니다.
