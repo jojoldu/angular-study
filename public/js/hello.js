@@ -106,7 +106,7 @@ angular.module('hello', [])
                     alert('월드') ;
                 });
         };
-        $scope.threeSecond();
+        //$scope.threeSecond();
 
         $scope.result=false;
         $scope.showQuiz = function(){
@@ -153,5 +153,34 @@ angular.module('hello', [])
                 .then(function(){
                     alert(registNumber);
                 });
+        };
+
+        $scope.promiseTest = function(number){
+            if(number<1){
+                asyncA();
+                asyncB();
+            }else if(number==1){
+                var a = asyncA();
+                var b = asyncB();
+                
+                $q.all([a, b])
+                    .then(function(){
+                        alert('다했다!');
+                    });
+            }
+        };
+
+        $scope.promiseTest(1);
+
+        function asyncA(){
+            return $timeout(function(){
+                alert('asyncA');
+            }, 3000);
+        }
+
+        function asyncB(){
+            return $timeout(function(){
+                alert('asyncB');
+            }, 1000);
         }
     });
