@@ -185,24 +185,27 @@ angular.module('hello', [])
             }
         };
 
-        $scope.promiseTest(2);
+        //$scope.promiseTest(2);
 
         function asyncA(){
+            alert('asyncA시작');
             return $timeout(function(){
                 alert('asyncA');
             }, 3000);
         }
 
         function asyncB(){
+            alert('asyncB시작');
             return $timeout(function(){
                 alert('asyncB');
             }, 1000);
         }
 
         function asyncC(){
-            $timeout(function(){
-                alert('asyncB');
-            }, 2000);
+            alert('asyncC시작');
+            return $timeout(function(){
+                alert('asyncC');
+            }, 4000);
         }
 
         /*
@@ -213,8 +216,18 @@ angular.module('hello', [])
             3) asyncA/B/C 가 다 끝나면 alert('끝났다!!'); 실행
          */
         $scope.promiseQuiz = function(){
+            var defer = $q.defer();
+            defer.promise
+                .then(asyncA)
+                .then(asyncB);
 
+            $q.all([defer.resolve(), asyncC()])
+                .then(function(){
+                    alert('끝났다!!!');
+                });
         };
+
+        $scope.promiseQuiz();
 
 
     });
