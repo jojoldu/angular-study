@@ -167,10 +167,25 @@ angular.module('hello', [])
                     .then(function(){
                         alert('다했다!');
                     });
+            }else{
+                var defer = $q.defer();
+                defer.promise
+                    .then(function(){
+                        return $timeout(function(){
+                            alert('asyncA');
+                        }, 3000);
+                    })
+                    .then(function(){
+                        return $timeout(function(){
+                            alert('asyncB');
+                        }, 1000);
+                    });
+
+                defer.resolve();
             }
         };
 
-        $scope.promiseTest(1);
+        $scope.promiseTest(2);
 
         function asyncA(){
             return $timeout(function(){
