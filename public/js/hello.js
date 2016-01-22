@@ -198,4 +198,23 @@ angular.module('hello', [])
                 alert('asyncB');
             }, 1000);
         }
+
+        function asyncC(){
+            $timeout(function(){
+                alert('asyncB');
+            }, 2000);
+        }
+
+        /*
+            promise 퀴즈
+            - 아래의 3가지 조건에 맞춰 promise 패턴을 적용
+            1) asyncA 실행후 asyncB 실행
+            2) 1)과 별도로 2초뒤 alert 하는 asyncC 진행
+            3) asyncA/B/C 가 다 끝나면 alert('끝났다!!'); 실행
+         */
+        $scope.promiseQuiz = function(){
+
+        };
+
+
     });
