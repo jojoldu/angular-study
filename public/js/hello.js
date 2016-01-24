@@ -106,7 +106,7 @@ angular.module('hello', [])
                     alert('월드') ;
                 });
         };
-        $scope.threeSecond();
+        //$scope.threeSecond();
 
         $scope.result=false;
         $scope.showQuiz = function(){
@@ -153,5 +153,68 @@ angular.module('hello', [])
                 .then(function(){
                     alert(registNumber);
                 });
+        };
+
+        $scope.promiseTest = function(number){
+            if(number<1){
+                asyncA();
+                asyncB();
+            }else if(number==1){
+                var a = asyncA();
+                var b = asyncB();
+                
+                $q.all([a, b])
+                    .then(function(){
+                        alert('다했다!');
+                    });
+            }else{
+                var defer = $q.defer();
+                defer.promise
+                    .then(function(){
+                        return $timeout(function(){
+                            alert('asyncA');
+                        }, 3000);
+                    })
+                    .then(function(){
+                        return $timeout(function(){
+                            alert('asyncB');
+                        }, 1000);
+                    });
+
+                defer.resolve();
+            }
+        };
+
+        $scope.promiseTest(2);
+
+        function asyncA(){
+            return $timeout(function(){
+                alert('asyncA');
+            }, 3000);
         }
+
+        function asyncB(){
+            return $timeout(function(){
+                alert('asyncB');
+            }, 1000);
+        }
+
+        function asyncC(){
+            $timeout(function(){
+                alert('asyncB');
+            }, 2000);
+        }
+
+        /*
+            promise 퀴즈
+            - 아래의 3가지 조건에 맞춰 promise 패턴을 적용
+            1) asyncA 실행후 asyncB 실행
+            2) 1)과 별도로 2초뒤 alert 하는 asyncC 진행
+            3) asyncA/B/C 가 다 끝나면 alert('끝났다!!'); 실행
+         */
+        $scope.promiseQuiz = function(){
+
+        };
+
+
     });
