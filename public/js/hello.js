@@ -185,23 +185,26 @@ angular.module('hello', [])
             }
         };
 
-        $scope.promiseTest(2);
+        //$scope.promiseTest(2);
 
         function asyncA(){
+            console.log("A시작");
             return $timeout(function(){
-                alert('asyncA');
+                console.log('asyncA');
             }, 3000);
         }
 
         function asyncB(){
+            console.log("B시작");
             return $timeout(function(){
-                alert('asyncB');
+                console.log('asyncB');
             }, 1000);
         }
 
         function asyncC(){
-            $timeout(function(){
-                alert('asyncB');
+            console.log("C시작");
+            return $timeout(function(){
+                console.log('asyncC');
             }, 2000);
         }
 
@@ -209,12 +212,18 @@ angular.module('hello', [])
             promise 퀴즈
             - 아래의 3가지 조건에 맞춰 promise 패턴을 적용
             1) asyncA 실행후 asyncB 실행
-            2) 1)과 별도로 2초뒤 alert 하는 asyncC 진행
-            3) asyncA/B/C 가 다 끝나면 alert('끝났다!!'); 실행
+            2) 1)과 별도로 2초뒤 console.log 하는 asyncC 진행
+            3) asyncA/B/C 가 다 끝나면 console.log('끝났다!!'); 실행
          */
         $scope.promiseQuiz = function(){
+            var asyncAB = asyncA()
+                    .then(asyncB);
 
+            $q.all([asyncAB, asyncC()])
+                .then(function(){
+                    console.log('끝났다!!!');
+                });
         };
-
+        $scope.promiseQuiz();
 
     });
