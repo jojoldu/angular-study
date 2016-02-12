@@ -84,6 +84,7 @@ angular.module('example')
     .directive('duplicateScope', function(){
        return {
            restrict: 'E',
-           template: '<div class="panel-body">이름 : <input ng-model=name /></div>'
+           template: '<div class="panel-body">이름 : <input ng-model=name /></div>',
+           scope:true
        }
     });
