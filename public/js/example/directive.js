@@ -64,4 +64,13 @@ angular.module('example')
             },
             template:'<br><ul><li ng-repeat="product in products">{{product.name}}</li></ul>'
         }
+    })
+    .directive('templateList', function(){
+       return {
+           link : function(scope, element, attrs){
+
+           },
+           restrict: 'A',
+           templateUrl: '../../html/exampleTemplate.html'
+       }
     });
