@@ -85,6 +85,8 @@ angular.module('example')
        return {
            restrict: 'E',
            template: '<div class="panel-body">이름 : <input ng-model=name /></div>',
-           scope:true
+           scope:{
+               local: "@nameprop"
+           }
        }
     });
