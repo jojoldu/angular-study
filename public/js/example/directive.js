@@ -77,6 +77,7 @@ angular.module('example')
                var templateName = (attrs['template'] === 'table')?
                    'exampleTableTemplate.html' : 'exampleTemplate.html';
                return defaultPath+templateName;
-           }
+           },
+           replace : true
        }
     });
