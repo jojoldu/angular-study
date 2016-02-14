@@ -64,4 +64,27 @@ angular.module('example')
             },
             template:'<br><ul><li ng-repeat="product in products">{{product.name}}</li></ul>'
         }
+    })
+    .directive('templateList', function(){
+       return {
+           link : function(scope, element, attrs){
+
+           },
+           restrict: 'A',
+           templateUrl: function(el, attrs){
+               //바로 위 directive인 products에서 scope에 products 데이터를 넣어주므로 해당 데이터를 활용하자
+               var defaultPath = '../../html/';
+               var templateName = (attrs['template'] === 'table')?
+                   'exampleTableTemplate.html' : 'exampleTemplate.html';
+               return defaultPath+templateName;
+           },
+           replace : true
+       }
+    })
+    .directive('duplicateScope', function(){
+       return {
+           restrict: 'E',
+           template: '<div class="panel-body">이름 : <input ng-model=name /></div>',
+           scope:true
+       }
     });
