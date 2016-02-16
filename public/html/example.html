@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Example</title>
     <script src="../components/angular/angular.js"></script>
+    <script src="../components/angular-route/angular-route.js"></script>
     <script src="../js/example/controller.js"></script>
     <script src="../js/example/directive.js"></script>
+    <script src="../js/example/config.js"></script>
     <link href="../components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
     <link href="../components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
 </head>
@@ -32,5 +34,17 @@
     <div template-list template="table" class="table table-striped"></div>
     <duplicate-scope></duplicate-scope>
     <duplicate-scope></duplicate-scope>
+
+    <!-- route 선택 부분 -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">라우터 샘플</a>
+            <ul class="nav">
+                <li><a href="#home">홈</a></li>
+                <li><a href="#products">상품 관리</a></li>
+            </ul>
+        </div>
+    </div>
+    <ng-view></ng-view>
 </body>
 </html>
