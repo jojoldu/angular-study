@@ -11,7 +11,8 @@
                 <input placeholder="price" type="text" class="form-control" ng-model="product.price">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" ng-click="saveProduct(product)"> 저장하기 </button>
+                <button class="btn btn-primary" ng-click="saveProduct(product)" ng-show="editMode != 'delete'"> 저장하기 </button>
+                <button class="btn btn-danger" ng-click="deleteProduct(product)" ng-show="editMode == 'delete'"> 삭제하기 </button>
                 <button class="btn btn-default" ng-click="cancelProduct()"> 취소하기 </button>
             </div>
         </form>

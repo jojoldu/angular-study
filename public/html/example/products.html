@@ -11,7 +11,10 @@
         <tr ng-repeat="item in products">
             <td>{{item.name}}</td>
             <td>{{item.price | currency}}</td>
-            <td><a href="#/edit/{{item.id}}" class="btn btn-xs btn-primary">수정하기</a></td>
+            <td>
+                <a href="#/edit/{{item.id}}" class="btn btn-xs btn-primary">수정</a>
+                <a href="#/delete/{{item.id}}" class="btn btn-xs btn-primary">삭제</a>
+            </td>
         </tr>
         <tr ng-show="!products.length">
             <!-- products 배열 요소 개수가 0이거나 배열 값이 없을 시 해당 <tr>요소가 보인다. -->

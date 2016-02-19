@@ -16,6 +16,10 @@ angular.module('example', ['ngRoute'])
                 templateUrl:'html/example/productForm.html',
                 controller:'EditController'
             })
+            .when('/delete/:id', {
+                templateUrl:'html/example/productForm.html',
+                controller:'EditController'
+            })
             .otherwise({redirectTo:'/home'});
     })
     /*
@@ -59,6 +63,10 @@ angular.module('example', ['ngRoute'])
             $location.path('/products');
         };
 
+        $scope.deleteProduct = function(){
+
+        };
+
         //이전 ExampleController에서 옮긴 코드
         $scope.saveProduct = function(product){
             var isNew = true;
@@ -85,7 +93,7 @@ angular.module('example', ['ngRoute'])
 
          */
         $scope.$on('$routeChangeSuccess', function(){
-            if($location.path().indexOf('/edit/') == 0){ //새로운 route경로가 /edit/로 시작한다면 아래 코드를 시작
+            var getProduct = function(){
                 var id = $routeParams['id'];
                 for(var i=0;i<$scope.products.length;i++){
                     if($scope.products[i].id == id){
@@ -93,6 +101,14 @@ angular.module('example', ['ngRoute'])
                         break;
                     }
                 }
+            };
+
+            if($location.path().indexOf('/edit/') == 0){ //새로운 route경로가 /edit/로 시작한다면 아래 코드를 시작
+                getProduct();
+                $scope.editMode = 'edit';
+            }else if($location.path().indexOf('/delete/') == 0){ //새로운 route경로가 /delete/로 시작한다면 아래 코드를 시작
+                getProduct();
+                $scope.editMode = 'delete';
             }
         });
     });
