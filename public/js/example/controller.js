@@ -8,7 +8,7 @@ angular.module('example', ['ngRoute'])
             .when('/home', {templateUrl:'html/example/home.html'})
             .when('/prev', {templateUrl:'html/example/prev.html'})
             .when('/products', {templateUrl:'html/example/products.html'})
-            .when('/saveProduct', {templateUrl:'html/example/saveProduct.html'})
+            .when('/save', {templateUrl:'html/example/productForm.html'})
             .otherwise({redirectTo:'/home'});
     })
     .controller('ExampleController', function($scope, $location){
