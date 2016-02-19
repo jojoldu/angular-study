@@ -8,9 +8,10 @@ angular.module('example', ['ngRoute'])
             .when('/home', {templateUrl:'html/example/home.html'})
             .when('/prev', {templateUrl:'html/example/prev.html'})
             .when('/products', {templateUrl:'html/example/products.html'})
+            .when('/saveProduct', {templateUrl:'html/example/saveProduct.html'})
             .otherwise({redirectTo:'/home'});
     })
-    .controller('ExampleController', function($scope){
+    .controller('ExampleController', function($scope, $location){
         $scope.message = {
             text : '아무것도 클릭되지 않음'
         };
@@ -36,4 +37,11 @@ angular.module('example', ['ngRoute'])
         ];
 
         $scope.products = products;
+
+        $scope.saveProduct = function(product){
+            product.id=$scope.products.length;
+            $scope.products.push(product);
+            $location.path('/products');
+        }
+
     });
