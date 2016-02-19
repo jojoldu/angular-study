@@ -8,8 +8,14 @@ angular.module('example', ['ngRoute'])
             .when('/home', {templateUrl:'html/example/home.html'})
             .when('/prev', {templateUrl:'html/example/prev.html'})
             .when('/products', {templateUrl:'html/example/products.html'})
-            .when('/save', {templateUrl:'html/example/productForm.html'})
-            .when('/edit/:id', {templateUrl:'html/example/productForm.html'})
+            .when('/save', {
+                templateUrl:'html/example/productForm.html',
+                controller:'EditController'
+            })
+            .when('/edit/:id', {
+                templateUrl:'html/example/productForm.html',
+                controller:'EditController'
+            })
             .otherwise({redirectTo:'/home'});
     })
     /*
@@ -17,7 +23,7 @@ angular.module('example', ['ngRoute'])
         $routeChangeSuccess : route가 변경된 후 일어난다.
 
      */
-    .controller('ExampleController', function($scope, $location, $route, $routeParams){
+    .controller('ExampleController', function($scope){
         $scope.message = {
             text : '아무것도 클릭되지 않음'
         };
@@ -43,7 +49,17 @@ angular.module('example', ['ngRoute'])
         ];
 
         $scope.products = products;
+    })
+    .controller('EditController', function ($scope, $routeParams, $location){
 
+        //EditController에서 추가된 코드
+        $scope.product = {};
+        $scope.cancelProduct = function(){
+            $scope.product = {};
+            $location.path('/products');
+        };
+
+        //이전 ExampleController에서 옮긴 코드
         $scope.saveProduct = function(product){
             var isNew = true;
             for(var i=0;i<$scope.products.length;i++){
@@ -62,10 +78,10 @@ angular.module('example', ['ngRoute'])
         };
 
         /*
-            $route는 사용할곳이 많지 않다.
-            크게 2가지인데, 1) route가 변하는 시점 2) 새 경로
-            $routeChangeSuccess는 1)을 알려주고,
-            $location은 2)을 알려준다.
+         $route는 사용할곳이 많지 않다.
+         크게 2가지인데, 1) route가 변하는 시점 2) 새 경로
+         $routeChangeSuccess는 1)을 알려주고,
+         $location은 2)을 알려준다.
 
          */
         $scope.$on('$routeChangeSuccess', function(){
@@ -78,6 +94,5 @@ angular.module('example', ['ngRoute'])
                     }
                 }
             }
-        })
-
+        });
     });
