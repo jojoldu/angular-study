@@ -149,5 +149,5 @@ app.get('/example', function(req, res){
     res.sendFile(path.join(__dirname + '/public/html/example.html'));
 });
 
-app.listen(80);
-console.log('Express Listening on port 80...');
+app.listen(8080);
+console.log('Express Listening on port 8080...');
